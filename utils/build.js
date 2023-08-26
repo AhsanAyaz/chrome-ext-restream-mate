@@ -23,5 +23,9 @@ config.plugins = (config.plugins || []).concat(
 );
 
 webpack(config, function (err) {
-  if (err) throw err;
+  if (err) {
+    console.log({ err });
+    throw err;
+  }
+  console.log('🚀 built successfully ✅');
 });

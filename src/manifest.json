@@ -14,9 +14,10 @@
   "icons": {
     "128": "icon-128.png"
   },
+  "permissions": ["activeTab", "tabs"],
   "content_scripts": [
     {
-      "matches": ["http://*/*", "https://*/*", "<all_urls>"],
+      "matches": ["http://*/*", "https://chat.restream.io/chat"],
       "js": ["contentScript.bundle.js"],
       "css": ["content.styles.css"]
     }
