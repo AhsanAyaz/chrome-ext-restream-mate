@@ -1,6 +1,6 @@
 import React from 'react';
 import './Popup.css';
-import { PopupActions } from '../../actions';
+import { PopupActions } from '../../core/actions';
 
 const Popup = () => {
   const getCurrentTab = async () => {
@@ -27,14 +27,18 @@ const Popup = () => {
     console.log(response);
   };
   return (
-    <div className="App">
-      <header className="App-header">
-        <button onClick={startObservingMessages}>
-          Start Observing Messages
-        </button>
-        <button onClick={stopObservingMessages}>Stop Observing Messages</button>
-      </header>
-    </div>
+    <main className="App">
+      <section className="main-section">
+        <div className="flex flex-col items-center gap-4">
+          <button className="action-button" onClick={startObservingMessages}>
+            Start Observing Messages
+          </button>
+          <button className="action-button" onClick={stopObservingMessages}>
+            Stop Observing Messages
+          </button>
+        </div>
+      </section>
+    </main>
   );
 };
 

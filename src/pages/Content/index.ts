@@ -1,26 +1,30 @@
-import { PopupActions } from "../../actions";
+import { Message } from "../../core/message";
+import { PopupActions } from "../../core/actions";
 
 console.log('Content script works with Typescript!');
 console.log('Must reload extension for modifications to take effect.');
+
+const OBSERVE_INTERVAL_IN_MS = 3000;
 
 type PopupAction = {
   action: PopupActions,
   payload: any
 }
 
-const messagesElQuery = '[class^=styles_scrollable-div] > .MuiGrid-item';
+let restreamMessages: Message[] = [];
+
+const messagesElQuery = '[class^=styles_scrollable-div] > .MuiGrid-item:not([data-uuid])';
 
 let observeTimer: ReturnType<typeof setInterval> | null = null;
 
-const parseMessageEl = (messageEl: HTMLDivElement) => {
-  console.log({ messageEl });
-}
-
 const observeMessages = () => {
   observeTimer = setInterval(() => {
-    const allMessages: NodeListOf<HTMLDivElement> = document.querySelectorAll(messagesElQuery);
-    allMessages.forEach(parseMessageEl);
-  }, 1500)
+    const allMessagesElements: NodeListOf<HTMLDivElement> = document.querySelectorAll(messagesElQuery);
+    allMessagesElements.forEach((el) => {
+      const message = new Message(el);
+      restreamMessages.push(message);
+    });
+  }, OBSERVE_INTERVAL_IN_MS)
 }
 
 const stopObservingMessages = () => {
