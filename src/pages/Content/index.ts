@@ -1,5 +1,6 @@
 import { Message } from "../../core/message";
 import { PopupActions } from "../../core/actions";
+import { parseMessage } from "./modules/messages";
 
 console.log('Content script works with Typescript!');
 console.log('Must reload extension for modifications to take effect.');
@@ -23,6 +24,7 @@ const observeMessages = () => {
     allMessagesElements.forEach((el) => {
       const message = new Message(el);
       restreamMessages.push(message);
+      parseMessage(message);
     });
   }, OBSERVE_INTERVAL_IN_MS)
 }
@@ -33,16 +35,20 @@ const stopObservingMessages = () => {
   }
 }
 
-chrome.runtime.onMessage.addListener(function (request: PopupAction, sender, sendResponse) {
-  console.log(request);
-  switch (request.action) {
-    case PopupActions.StartObservingMessages:
-      observeMessages();
-      break;
-    case PopupActions.StopObservingMessages:
-      stopObservingMessages();
-      break;
-    default:
-      break;
-  }
-});
+const main = () => {
+  chrome.runtime.onMessage.addListener(function (request: PopupAction, sender, sendResponse) {
+    console.log(request);
+    switch (request.action) {
+      case PopupActions.StartObservingMessages:
+        observeMessages();
+        break;
+      case PopupActions.StopObservingMessages:
+        stopObservingMessages();
+        break;
+      default:
+        break;
+    }
+  });
+}
+
+main();

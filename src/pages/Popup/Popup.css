@@ -37,6 +37,7 @@
 
 .action-button {
   @apply px-3 py-1.5 bg-slate-900 text-white rounded-md duration-200 hover:bg-slate-800;
+  @apply disabled:bg-slate-300 disabled:opacity-25 disabled:cursor-not-allowed;
 }
 
 @keyframes App-logo-spin {
