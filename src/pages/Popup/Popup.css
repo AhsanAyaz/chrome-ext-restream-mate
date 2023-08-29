@@ -1,5 +1,4 @@
 .App {
-  position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -44,6 +43,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

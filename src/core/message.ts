@@ -1,4 +1,9 @@
-export class Message {
+export interface IMessage {
+  text: string;
+  imageUrl: string;
+  username: string;
+}
+export class Message implements IMessage {
   private el: HTMLDivElement;
   text!: string;
   imageUrl!: string;
