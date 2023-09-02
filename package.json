@@ -8,7 +8,7 @@
     "url": "https://github.com/AhsanAyaz/chrome-ext-restream-mate.git"
   },
   "scripts": {
-    "build": "node utils/build.js",
+    "build": "rm -rf build && node utils/build.js",
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "start": "node utils/webserver.js",
     "prettier": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
