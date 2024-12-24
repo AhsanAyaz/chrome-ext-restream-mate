@@ -14,9 +14,11 @@ export class Message implements IMessage {
   }
 
   parseMessage(el: HTMLDivElement) {
-    const imageEl = el.querySelector('.MuiAvatar-circle img') as HTMLImageElement;
+    const imageEl = el.querySelector('[alt="avatar"]') as HTMLImageElement;
     this.imageUrl = imageEl.src;
-    const usernameEl = el.querySelector('.MuiTypography-subtitle2') as HTMLDivElement;
+    const usernameEl = el.querySelector(
+      '.MuiTypography-subtitle2'
+    ) as HTMLDivElement;
     this.username = usernameEl.textContent || '';
     const textEl = el.querySelector('.chat-text-normal');
     this.text = textEl?.textContent || '';
